@@ -1,21 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Brick : MonoBehaviour{
-	public float speed;
+public class NotHit : MonoBehaviour{
+	public Text hit;
+	public GameObject player;
 	// Start is called before the first frame update
 	void Start(){
 	}
 
 	// Update is called once per frame
 	void Update(){
-		transform.Translate(0, 0, -speed*Time.deltaTime);
 	}
 
 	void OnTriggerEnter(Collider other){
-		if(other.gameObject.tag == "Player" || other.gameObject.name == "Wall"){
-			Destroy(gameObject);
+		if(other.gameObject.tag == "brick"){
+			hit.text = "Miss";
+			player.GetComponent<HitBrick>().counter = 0;
 		}
 	}
 }
