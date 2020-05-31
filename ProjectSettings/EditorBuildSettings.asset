@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Origami.unity
     guid: 62132121d35b9ee49b4724e363aa8dd2
+  - enabled: 1
+    path: Assets/Scenes/track.unity
+    guid: 78a55ddaa1cb926498a64cdc044c8056
   m_configObjects: {}
