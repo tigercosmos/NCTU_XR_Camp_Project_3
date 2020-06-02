@@ -38,10 +38,8 @@ public class AudioManager : MonoBehaviour
         BGM.Play();
     }
 
-    public ArrayList GetBeats()
+    public ArrayList GetBeats(string path)
     {
-        string path = "Assets/Sounds/beat1.txt";
-
         var times = new ArrayList();
 
         StreamReader reader = new StreamReader(path);

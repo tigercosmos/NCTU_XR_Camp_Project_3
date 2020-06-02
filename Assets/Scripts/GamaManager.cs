@@ -21,7 +21,7 @@ public class GamaManager : MonoBehaviour
 
     public void StartGame()
     {
-        var times = AM.GetBeats();
+        var times = AM.GetBeats("Assets/Sounds/beat1.txt");
         foreach (var time in times)
         {
             Debug.Log(time);
