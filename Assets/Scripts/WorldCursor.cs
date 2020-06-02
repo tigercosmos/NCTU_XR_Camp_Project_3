@@ -3,7 +3,6 @@
 public class WorldCursor : MonoBehaviour{
     private MeshRenderer meshRenderer;
 
-    // Use this for initialization
     void Start(){
         // Grab the mesh renderer that's on the same object as this script.
         meshRenderer = this.gameObject.GetComponentInChildren<MeshRenderer>();

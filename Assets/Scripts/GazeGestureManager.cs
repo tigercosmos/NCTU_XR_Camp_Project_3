@@ -9,6 +9,8 @@ public class GazeGestureManager : MonoBehaviour{
 
     GestureRecognizer recognizer;
 
+    GameObject Player;
+
     // Use this for initialization
     void Awake(){
         Instance = this;
@@ -18,10 +20,14 @@ public class GazeGestureManager : MonoBehaviour{
         recognizer.Tapped += (args) =>{
             // Send an OnSelect message to the focused object and its ancestors.
             if (FocusedObject != null){
-                FocusedObject.SendMessageUpwards("OnSelect", SendMessageOptions.DontRequireReceiver);
+                FocusedObject.SendMessageUpwards("Click", SendMessageOptions.DontRequireReceiver);
             }
         };
         recognizer.StartCapturingGestures();
+    }
+
+    void Start(){
+        Player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -31,8 +37,8 @@ public class GazeGestureManager : MonoBehaviour{
 
         // Do a raycast into the world based on the user's
         // head position and orientation.
-        var headPosition = Camera.main.transform.position;
-        var gazeDirection = Camera.main.transform.forward;
+        var headPosition = Player.transform.position;
+        var gazeDirection = Player.transform.forward;
 
         RaycastHit hitInfo;
         if (Physics.Raycast(headPosition, gazeDirection, out hitInfo)){
