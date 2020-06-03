@@ -15,7 +15,7 @@ public class BrickOut : MonoBehaviour{
 	void Update(){
 		var time = Time.time - start_time;
 
-		if (time >= float.Parse(times[counter])){
+		if(time >= float.Parse(times[counter])){
 			Debug.Log("time pass: " + time + ".Generate a beat.");
 			if (Random.Range(0.0f, 2.0f) > 1){
 				Instantiate(Brick, O1.transform.position, O1.transform.rotation);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GamaManager : MonoBehaviour{
+public class GameManager : MonoBehaviour{
 	public AudioManager AM;
 	public BrickOut BO;
 	//GameObject AudioManager, BrickOut;

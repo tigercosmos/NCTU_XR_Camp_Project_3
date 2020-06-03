@@ -8,9 +8,9 @@ public class SetParent : MonoBehaviour{
 		GameObject Player = GameObject.FindWithTag("Player");
 		if(Player){
 			transform.parent = Player.transform;
+			transform.localPosition = new Vector3(0, 0, 0);
+			transform.localRotation = Quaternion.identity;
 		}
-		transform.position = new Vector3(0, 0, 0);
-		transform.rotation = Quaternion.identity;
 	}
 
 	public void UnbindParent(){

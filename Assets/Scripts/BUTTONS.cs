@@ -61,9 +61,11 @@ public class BUTTONS : MonoBehaviour{
 		else if(action == "WarmUp") ToWarmUp();
 		else if(action == "WarmUpStart") WarmUpStart();
 		else if(action == "WarmUpEnd") WarmUpEnd();
+	*/
 		else if(action == "Running") ToRunning();
 		else if(action == "SetTrack") SetTrack();
 		else if(action == "Exit") Exit();
+	/*
 		else return false;
 
 		return true;
@@ -115,9 +117,10 @@ public class BUTTONS : MonoBehaviour{
 	}
 
 	void SetTrack(){
-		GameObject.Find("Canvas").GetComponent<SetParent>().UnbindParent();
-		GameObject.Find("Tracks").GetComponent<SetParent>().UnbindParent();
+		GameObject.Find("Group").GetComponent<SetParent>().UnbindParent();
 		Player.GetComponent<Player>().state = "Running";
+		GameObject.Find("GameManager").GetComponent<GameManager>().StartGame();
+		GameObject.Find("READY").SetActive(false);
 	}
 
 	void Exit(){
