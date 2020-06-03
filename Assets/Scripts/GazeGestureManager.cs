@@ -9,8 +9,6 @@ public class GazeGestureManager : MonoBehaviour{
 
     GestureRecognizer recognizer;
 
-    GameObject Player;
-
     // Use this for initialization
     void Awake(){
         Instance = this;
@@ -27,7 +25,6 @@ public class GazeGestureManager : MonoBehaviour{
     }
 
     void Start(){
-        Player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -37,8 +34,8 @@ public class GazeGestureManager : MonoBehaviour{
 
         // Do a raycast into the world based on the user's
         // head position and orientation.
-        var headPosition = Player.transform.position;
-        var gazeDirection = Player.transform.forward;
+        var headPosition = transform.position;
+        var gazeDirection = transform.forward;
 
         RaycastHit hitInfo;
         if (Physics.Raycast(headPosition, gazeDirection, out hitInfo)){

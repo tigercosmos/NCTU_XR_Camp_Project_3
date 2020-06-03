@@ -2,33 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GamaManager : MonoBehaviour
-{
+public class GamaManager : MonoBehaviour{
+	public AudioManager AM;
+	public BrickOut BO;
+	//GameObject AudioManager, BrickOut;
 
-    public AudioManager AM;
-    public BrickOut BO;
+	void Start(){
+	}
 
-    void Start()
-    {
-        StartGame();
-    }
+	// Update is called once per frame
+	void Update(){
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
+	public void StartGame(){
+		var times = AM.GetBeats("Assets/Sounds/beat1.txt");
+		foreach (var time in times){
+			Debug.Log(time);
+		}
 
-    }
-
-    public void StartGame()
-    {
-        var times = AM.GetBeats("Assets/Sounds/beat1.txt");
-        foreach (var time in times)
-        {
-            Debug.Log(time);
-        }
-
-        AM.StartBGM();
-        BO.GenerateBeats(times);
-    }
-
+		AM.StartBGM();
+		BO.GenerateBeats(times);
+	}
 }
