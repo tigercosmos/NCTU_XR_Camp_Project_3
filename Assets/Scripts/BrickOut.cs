@@ -11,9 +11,11 @@ public class BrickOut : MonoBehaviour{
 	void Start(){
 	}
 
-	// Update is called once per frame
-	void Update(){
-		var time = Time.time - start_time;
+    // Update is called once per frame
+    void Update()
+    {
+        var ball_come_time = 30/20; // distance / velocity
+        var time = Time.time - start_time - ball_come_time;
 
 		if(time >= float.Parse(times[counter])){
 			Debug.Log("time pass: " + time + ".Generate a beat.");
