@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 7881787}
   - component: {fileID: 7881786}
   - component: {fileID: 7881789}
+  - component: {fileID: 7881790}
   m_Layer: 0
   m_Name: Envoker
   m_TagString: UI collider
@@ -299,10 +300,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6347829870cf9da42a6689cb676de825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  action: 
-  Radio: 0
-  Checked: 0
-  ButtonsEnvokeGroup: []
+  action: WarmUpStart
+--- !u!114 &7881790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7881784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04417c5e8f0ac2747801b95ef3701f98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Obj:
+  - {fileID: 1788170978}
 --- !u!1 &84634241
 GameObject:
   m_ObjectHideFlags: 0
@@ -1042,10 +1054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6347829870cf9da42a6689cb676de825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  action: Running
-  Radio: 0
-  Checked: 0
-  ButtonsEnvokeGroup: []
+  action: GameLevel
 --- !u!64 &893970663
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1355,10 +1364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6347829870cf9da42a6689cb676de825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  action: Running
-  Radio: 0
-  Checked: 0
-  ButtonsEnvokeGroup: []
+  action: GameLevel
 --- !u!64 &1280398968
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1629,10 +1635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6347829870cf9da42a6689cb676de825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  action: Running
-  Radio: 0
-  Checked: 0
-  ButtonsEnvokeGroup: []
+  action: GameLevel
 --- !u!1 &1513176357
 GameObject:
   m_ObjectHideFlags: 0

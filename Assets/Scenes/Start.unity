@@ -687,7 +687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6347829870cf9da42a6689cb676de825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  action: GameLevel
+  action: WarmUp
 --- !u!1 &1713595569
 GameObject:
   m_ObjectHideFlags: 0

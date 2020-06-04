@@ -304,6 +304,7 @@ GameObject:
   - component: {fileID: 293613232}
   - component: {fileID: 293613234}
   - component: {fileID: 293613233}
+  - component: {fileID: 293613235}
   m_Layer: 5
   m_Name: dict
   m_TagString: Untagged
@@ -371,6 +372,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 293613231}
   m_CullTransparentMesh: 0
+--- !u!114 &293613235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293613231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1f2e88f0a4466442b38eac60001e2b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &510612084
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,6 +466,7 @@ GameObject:
   - component: {fileID: 826022241}
   - component: {fileID: 826022243}
   - component: {fileID: 826022242}
+  - component: {fileID: 826022244}
   m_Layer: 5
   m_Name: combo
   m_TagString: Untagged
@@ -511,7 +525,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 50
+  m_Text: 
 --- !u!222 &826022243
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -520,6 +534,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 826022240}
   m_CullTransparentMesh: 0
+--- !u!114 &826022244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826022240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad98caf286d7fbd40b79ec13be6af144, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &889479466
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,6 +933,7 @@ GameObject:
   - component: {fileID: 1620289772}
   - component: {fileID: 1620289774}
   - component: {fileID: 1620289773}
+  - component: {fileID: 1620289775}
   m_Layer: 5
   m_Name: time
   m_TagString: Untagged
@@ -974,6 +1001,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1620289771}
   m_CullTransparentMesh: 0
+--- !u!114 &1620289775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620289771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4a09be1a7a69184faee57ab36a7e9a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1666677892
 GameObject:
   m_ObjectHideFlags: 0
@@ -1082,9 +1121,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: Start
-  Radio: 0
-  Checked: 0
-  ButtonsEnvokeGroup: []
 --- !u!1 &1741545982
 GameObject:
   m_ObjectHideFlags: 0

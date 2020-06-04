@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BrickOut : MonoBehaviour{
-	public GameObject O1, O2, Brick;
+	public GameObject Brick;
+	GameObject O1, O2;
 	private string[] times;
 	private int counter = 0;
 	private float start_time;
 	// Start is called before the first frame update
 	void Start(){
+		Transform Ot1 = transform.Find("Out1");
+		if(Ot1) O1 = Ot1.gameObject;
+		Transform Ot2 = transform.Find("Out2");
+		if(Ot2) O2 = Ot2.gameObject;
 	}
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         var ball_come_time = 30/20; // distance / velocity
         var time = Time.time - start_time - ball_come_time;
 

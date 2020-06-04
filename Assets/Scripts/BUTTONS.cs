@@ -57,30 +57,17 @@ public class BUTTONS : MonoBehaviour{
 		if(action == "Start") ToStart();
 		else if(action == "GameLevel") ToGameLevel();
 		else if(action == "MusicSelect") ToMusicSelect();
-	/*
 		else if(action == "WarmUp") ToWarmUp();
 		else if(action == "WarmUpStart") WarmUpStart();
-		else if(action == "WarmUpEnd") WarmUpEnd();
-	*/
+		//else if(action == "WarmUpEnd") WarmUpEnd();
 		else if(action == "Running") ToRunning();
 		else if(action == "SetTrack") SetTrack();
+		else if(action == "MusicChange") ToMusicChange();
+		else if(action == "Pause") Pause();
+		else if(action == "Score") ToScore();
 		else if(action == "Exit") Exit();
-	/*
-		else return false;
+	}
 
-		return true;
-	*/
-	}
-/*
-	public void SetChecked(bool value){
-		if(Radio && value){
-			for(int i = 0; i < ButtonsEnvokeGroup.Length; i++){
-				ButtonsEnvokeGroup[i].GetComponent<BUTTONS>().Checked = false;
-			}
-		}
-		Checked = value;
-	}
-*/
 	void ToStart(){
 		GameObject.FindWithTag("Player").GetComponent<Player>().state = "Start";
 		SceneManager.LoadScene("Start");
@@ -105,22 +92,44 @@ public class BUTTONS : MonoBehaviour{
 	}
 
 	void WarmUpStart(){
+		GameObject.Find("start").SetActive(false);
+		WarmUpEnd();
 	}
 
 	void WarmUpEnd(){
+		GetComponent<SetActive>().Active();
 	}
 
 	void ToRunning(){
 		Player.GetComponent<Player>().Run_init();
+		Player.transform.Find("Canvas").gameObject.SetActive(false);
 		Player.GetComponent<Player>().state = "Run";
 		SceneManager.LoadScene("Running");
 	}
 
 	void SetTrack(){
-		GameObject.Find("Group").GetComponent<SetParent>().UnbindParent();
+		GameObject.Find("Tracks").GetComponent<SetParent>().UnbindParent();
+		GameObject.Find("Buttons").transform.position = Player.transform.position;
+		GameObject.Find("Buttons").transform.rotation = Player.transform.rotation;
+		GameObject.Find("Buttons").GetComponent<SetActive>().Active();
+		Player.transform.Find("Canvas").gameObject.SetActive(true);
 		Player.GetComponent<Player>().state = "Running";
 		GameObject.Find("GameManager").GetComponent<GameManager>().StartGame();
 		GameObject.Find("READY").SetActive(false);
+	}
+
+	void ToMusicChange(){
+		Player.GetComponent<Player>().state = "MusicChange";
+		SceneManager.LoadScene("MusicChange");
+	}
+
+	void Pause(){
+		Debug.Log("Pause");
+	}
+
+	void ToScore(){
+		Player.GetComponent<Player>().state = "Score";
+		SceneManager.LoadScene("Score");
 	}
 
 	void Exit(){

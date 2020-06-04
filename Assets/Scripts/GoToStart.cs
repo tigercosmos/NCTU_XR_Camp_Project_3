@@ -4,9 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GoToStart : MonoBehaviour{
+	GameObject Player;
 	// Start is called before the first frame update
 	void Start(){
-		GameObject.FindWithTag("Player").GetComponent<Player>().state = "Run";
+		Player = GameObject.FindWithTag("Player");
+		Player.GetComponent<Player>().Run_init();
+		Player.transform.Find("Canvas").gameObject.SetActive(false);
+		Player.GetComponent<Player>().state = "Run";
 		SceneManager.LoadScene("Running");
 	}
 }

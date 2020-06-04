@@ -4,18 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour{
-	public int combo, speed, speed_floor;
+	public int combo, max_combo, speed, speed_floor;
 	public float timer, dict;
 	public string state, music;
 	public Material OntrackMat, NotOntrackMat;
 	public Vector3 HitPoint;
 	bool Ontrack;
-	GameObject Cursor;
+	GameObject Cursor_true, Cursor_false;
 
 	void Start(){
 		DontDestroyOnLoad(this.gameObject);
-		Cursor = transform.Find("Canvas/Cursor").gameObject;
-		Cursor.SetActive(true);
+		Cursor_false = transform.Find("Canvas/FalseCursor").gameObject;
+		Cursor_true = transform.Find("Canvas/TrueCursor").gameObject;
+		Cursor_true.SetActive(false);
 		Run_init();
 		music = "";
 		HitPoint = new Vector3(0, 0, 0);
@@ -39,13 +40,24 @@ public class Player : MonoBehaviour{
 			GameObject target = hitInfo.collider.gameObject;
 			if(target.transform.tag == "UI collider"){
 				target.GetComponent<BUTTONS>().Hover();
+				Cursor_false.SetActive(false);
+				Cursor_true.SetActive(true);
+			}
+			else{
+				Cursor_false.SetActive(true);
+				Cursor_true.SetActive(false);
 			}
 			HitPoint = hitInfo.point;
+		}
+		else{
+			Cursor_false.SetActive(true);
+			Cursor_true.SetActive(false);
 		}
 	}
 
 	public void Run_init(){
 		combo = 0;
+		max_combo = 0;
 		speed = 0;
 		timer = 0;
 		dict = 0;
@@ -55,6 +67,7 @@ public class Player : MonoBehaviour{
 	void OnTriggerEnter(Collider other){
 		if(other.gameObject.tag == "brick"){
 			combo++;
+			if(combo > max_combo) max_combo = combo;
 		}
 	}
 
