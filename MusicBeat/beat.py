@@ -34,7 +34,6 @@ with open(filepath) as fp:
 
     print("per period time: ", per_period_time)
 
-
     beats = []
     last_time = 0
     for tokens in new_lines:
@@ -43,34 +42,31 @@ with open(filepath) as fp:
             von = von.split("=")[1]
             von = int(von)
 
-            period = int(tokens[1]) + float(eval(tokens[3]))/4
+            period = int(tokens[1])-1 + float(eval(tokens[3]))/4
             print("period von ", period, von)
             time = per_period_time * period
 
             if von > 50:
-              last_time = time
-              beats.append(time)
+                last_time = time
+                beats.append(time)
 
-            if time - last_time > 2.5:
+            if time - last_time > 1.5:
                 if von > 30:
                     last_time = time
-                    beats.append(time) 
-                elif time - last_time > 3:
+                    beats.append(time)
+                elif time - last_time > 2:
                     if von > 15:
                         last_time = time
                         beats.append(time)
-                elif time - last_time > 4:
+                elif time - last_time > 2.5:
                     last_time = time
-                    beats.append(time) 
-    
+                    beats.append(time)
+
     print("Beats: ", len(beats))
 
     data = ""
     for beat in beats:
-      data += str(beat) + '\n'
+        data += str(beat) + '\n'
 
     f = open("beat.txt", "w")
     f.write(data)
-
-
-

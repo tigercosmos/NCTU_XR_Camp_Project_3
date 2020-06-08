@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour{
 	//GameObject AudioManager, BrickOut;
 
 	void Start(){
+		StartGame();
 	}
 
 	// Update is called once per frame
