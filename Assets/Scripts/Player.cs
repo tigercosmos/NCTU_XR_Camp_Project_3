@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour{
-	public int combo, max_combo, speed, speed_floor;
+	public int combo, max_combo, speed, speed_floor, score;
 	public float timer, dict;
 	public string state, music;
 	public Material OntrackMat, NotOntrackMat;
@@ -62,12 +62,16 @@ public class Player : MonoBehaviour{
 		timer = 0;
 		dict = 0;
 		Ontrack = false;
+		score = 0;
 	}
 
 	void OnTriggerEnter(Collider other){
 		if(other.gameObject.tag == "brick"){
 			combo++;
 			if(combo > max_combo) max_combo = combo;
+			score += combo;
+		} else if (other.gameObject.tag == "obstacle") {
+			combo = 0;
 		}
 	}
 
