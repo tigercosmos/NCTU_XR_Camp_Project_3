@@ -55,7 +55,7 @@ public class BrickOut : MonoBehaviour
             }
             counter += 1;
         }
-        if ( Time.time % 5 < 0.01)
+        if ( Time.time % 10 < 0.008 )
         {
             Debug.Log("time pass: " + time + ".Generate an obstacle.");
             if (Random.Range(0.0f, 2.0f) > 1)
