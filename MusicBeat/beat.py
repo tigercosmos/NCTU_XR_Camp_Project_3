@@ -1,7 +1,7 @@
 import os
 import re
 
-os.system("./mid2asc test.mid > text.tmp")
+# os.system("./mid2asc music3.mid > text.tmp")
 
 filepath = 'text.tmp'
 with open(filepath) as fp:
@@ -46,21 +46,25 @@ with open(filepath) as fp:
             print("period von ", period, von)
             time = per_period_time * period
 
-            if von > 50:
-                last_time = time
-                beats.append(time)
+            key = tokens[9][0]
 
-            if time - last_time > 1.5:
-                if von > 30:
+            # if key in ["E", "G", "A", "C"]:
+            if True:
+                if von > 50:
                     last_time = time
                     beats.append(time)
-                elif time - last_time > 2:
-                    if von > 15:
+
+                if time - last_time > 1.5:
+                    if von > 30:
                         last_time = time
                         beats.append(time)
-                elif time - last_time > 2.5:
-                    last_time = time
-                    beats.append(time)
+                    elif time - last_time > 2:
+                        if von > 15:
+                            last_time = time
+                            beats.append(time)
+                    elif time - last_time > 2.5:
+                        last_time = time
+                        beats.append(time)
 
     print("Beats: ", len(beats))
 
