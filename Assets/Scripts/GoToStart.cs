@@ -10,7 +10,7 @@ public class GoToStart : MonoBehaviour{
 		Player = GameObject.FindWithTag("Player");
 		//Player.GetComponent<Player>().Run_init();
 		//Player.transform.Find("Canvas").gameObject.SetActive(false);
-		Player.GetComponent<Player>().state = "MusicSelect";
-		SceneManager.LoadScene("MusicSelect");
+		Player.GetComponent<Player>().state = "Start";
+		SceneManager.LoadScene("Start");
 	}
 }
