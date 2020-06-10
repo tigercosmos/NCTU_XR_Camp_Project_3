@@ -59,11 +59,12 @@ public class BUTTONS : MonoBehaviour{
 		else if(action == "MusicSelect") ToMusicSelect();
 		else if(action == "WarmUp") ToWarmUp();
 		else if(action == "WarmUpStart") WarmUpStart();
-		//else if(action == "WarmUpEnd") WarmUpEnd();
+		else if(action == "WarmUpEnd") WarmUpEnd();
 		else if(action == "Running") ToRunning();
 		else if(action == "SetTrack") SetTrack();
 		else if(action == "MusicChange") ToMusicChange();
 		else if(action == "Pause") Pause();
+		else if(action == "Return") Return();
 		else if(action == "Score") ToScore();
 		else if(action == "Exit") Exit();
 	}
@@ -93,7 +94,7 @@ public class BUTTONS : MonoBehaviour{
 
 	void WarmUpStart(){
 		GameObject.Find("start").SetActive(false);
-		WarmUpEnd();
+		GetComponent<SetActive>().Active();
 	}
 
 	void WarmUpEnd(){
@@ -109,12 +110,13 @@ public class BUTTONS : MonoBehaviour{
 
 	void SetTrack(){
 		GameObject.Find("Tracks").GetComponent<SetParent>().UnbindParent();
-		GameObject.Find("Buttons").transform.position = Player.transform.position;
-		GameObject.Find("Buttons").transform.rotation = Player.transform.rotation;
-		GameObject.Find("Buttons").GetComponent<SetActive>().Active();
+		//GameObject.Find("Buttons").transform.position = Player.transform.position;
+		//GameObject.Find("Buttons").transform.rotation = Player.transform.rotation;
+		//GameObject.Find("Buttons").GetComponent<SetActive>().Active();
 		Player.transform.Find("Canvas").gameObject.SetActive(true);
 		Player.GetComponent<Player>().state = "Running";
 		GameObject.Find("GameManager").GetComponent<GameManager>().StartGame();
+		GetComponent<SetActive>().Active();
 		GameObject.Find("READY").SetActive(false);
 	}
 
@@ -124,7 +126,22 @@ public class BUTTONS : MonoBehaviour{
 	}
 
 	void Pause(){
-		Debug.Log("Pause");
+		GameObject.Find("Tracks").SetActive(false);
+		GetComponent<SetActive>().Active();
+		GameObject PC = GameObject.Find("PauseCanvas");
+		PC.transform.position = Player.transform.position;
+		PC.transform.rotation = Player.transform.rotation;
+		PC.transform.Translate(0, 0, 2);
+		GameObject[] Bricks = GameObject.FindGameObjectsWithTag("brick");
+		foreach(GameObject b in Bricks) b.GetComponent<Brick>().Pause();
+		GameObject.Find("RunningCanvas").SetActive(false);
+	}
+
+	void Return(){
+		GetComponent<SetActive>().Active();
+		GameObject[] Bricks = GameObject.FindGameObjectsWithTag("brick");
+		foreach(GameObject b in Bricks) b.GetComponent<Brick>().Continue();
+		GameObject.Find("PauseCanvas").SetActive(false);
 	}
 
 	void ToScore(){

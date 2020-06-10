@@ -668,7 +668,7 @@ GameObject:
   - component: {fileID: 598726007}
   - component: {fileID: 598726006}
   m_Layer: 0
-  m_Name: Evoker
+  m_Name: Envoker
   m_TagString: UI collider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

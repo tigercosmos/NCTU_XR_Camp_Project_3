@@ -323,8 +323,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combo: 0
+  max_combo: 0
   speed: 0
   speed_floor: 5
+  score: 0
   timer: 0
   dict: 0
   state: 
@@ -379,7 +381,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.85
+  near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 0
