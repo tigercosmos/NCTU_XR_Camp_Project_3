@@ -8,9 +8,9 @@ public class GoToStart : MonoBehaviour{
 	// Start is called before the first frame update
 	void Start(){
 		Player = GameObject.FindWithTag("Player");
-		Player.GetComponent<Player>().Run_init();
-		Player.transform.Find("Canvas").gameObject.SetActive(false);
-		Player.GetComponent<Player>().state = "Run";
-		SceneManager.LoadScene("Running");
+		//Player.GetComponent<Player>().Run_init();
+		//Player.transform.Find("Canvas").gameObject.SetActive(false);
+		Player.GetComponent<Player>().state = "MusicSelect";
+		SceneManager.LoadScene("MusicSelect");
 	}
 }

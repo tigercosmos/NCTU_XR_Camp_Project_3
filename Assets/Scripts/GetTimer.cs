@@ -15,6 +15,7 @@ public class GetTimer : MonoBehaviour{
 		int secs = 0;
 		if(Player) secs = (int)(Player.GetComponent<Player>().timer);
 		int mins = secs/60;
-		gameObject.GetComponent<Text>().text = mins/10 + "" + mins%10 + ":" + (secs%60)/10 + "" + secs%600;
+		secs %= 60;
+		gameObject.GetComponent<Text>().text = mins/10 + "" + mins%10 + ":" + secs/10 + "" + secs%10;
 	}
 }

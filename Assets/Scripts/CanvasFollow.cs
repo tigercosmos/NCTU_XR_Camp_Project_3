@@ -1,21 +1,12 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetParent : MonoBehaviour{
+public class CanvasFollow : MonoBehaviour{
 	public Vector3 Origin;
-	GameObject Player;
-	Player PlayerScript;
-	// Start is called before the first frame update
-	void Start(){
-		Player = GameObject.FindWithTag("Player");
-		if(Player){
-			PlayerScript = Player.GetComponent<Player>();
-			BindParent();
-		}
-	}
 
 	void Update(){
+        Player PlayerScript = GameObject.FindWithTag("Player").GetComponent<Player>();
 		if(PlayerScript.state != "Run" && PlayerScript.state != "Running") Destroy(gameObject);
 	}
 
@@ -24,7 +15,7 @@ public class SetParent : MonoBehaviour{
 	}
 
 	public void BindParent(){
-		transform.parent = Player.transform;
+		transform.parent = GameObject.FindWithTag("Player").transform;
 		transform.localPosition = Origin;
 		transform.localRotation = Quaternion.identity;
 	}

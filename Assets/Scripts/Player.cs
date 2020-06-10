@@ -4,21 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour{
-	public int combo, max_combo, speed, speed_floor, score;
+	public int combo, max_combo, speed, speed_floor, score, music_idx;
 	public float timer, dict;
-	public string state, music;
+	public string state;
 	public Material OntrackMat, NotOntrackMat;
+	public AudioClip Eat, Bump, Click;
 	public Vector3 HitPoint;
 	bool Ontrack;
 	GameObject Cursor_true, Cursor_false;
+	AudioSource Effect;
 
 	void Start(){
 		DontDestroyOnLoad(this.gameObject);
 		Cursor_false = transform.Find("Canvas/FalseCursor").gameObject;
 		Cursor_true = transform.Find("Canvas/TrueCursor").gameObject;
+		Effect = transform.Find("Effect").gameObject.GetComponent<AudioSource>();
 		Cursor_true.SetActive(false);
 		Run_init();
-		music = "";
+		music_idx = 1;
 		HitPoint = new Vector3(0, 0, 0);
 	}
 
@@ -65,13 +68,25 @@ public class Player : MonoBehaviour{
 		score = 0;
 	}
 
+	public void Sound(string cmd){
+		if(Effect.isPlaying) Effect.Stop();
+		if(cmd == "Eat") Effect.clip = Eat;
+		else if(cmd == "Bump") Effect.clip = Bump;
+		else if(cmd == "Click") Effect.clip = Click;
+
+		Effect.Play();
+	}
+
 	void OnTriggerEnter(Collider other){
 		if(other.gameObject.tag == "brick"){
 			combo++;
 			if(combo > max_combo) max_combo = combo;
 			score += combo;
-		} else if (other.gameObject.tag == "obstacle") {
+			Sound("Eat");
+		}
+		else if(other.gameObject.tag == "obstacle"){
 			combo = 0;
+			Sound("Bump");
 		}
 	}
 

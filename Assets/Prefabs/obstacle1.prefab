@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 1012150111296284366}
   - component: {fileID: 1012150111296284367}
   - component: {fileID: 1012150111296284364}
-  - component: {fileID: 1012150111296284363}
+  - component: {fileID: -1102294869921410693}
   m_Layer: 0
   m_Name: obstacle1
-  m_TagString: brick
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,7 +95,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1012150111296284363
+--- !u!114 &-1102294869921410693
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

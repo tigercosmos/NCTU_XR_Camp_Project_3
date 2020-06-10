@@ -52,18 +52,22 @@ public class BUTTONS : MonoBehaviour{
 	}
 
 	public void Click(){
-		Debug.Log(Button.name + " click");
-		//SetChecked(true);
+		Player.GetComponent<Player>().Sound("Click");
 		if(action == "Start") ToStart();
-		else if(action == "GameLevel") ToGameLevel();
-		else if(action == "MusicSelect") ToMusicSelect();
 		else if(action == "WarmUp") ToWarmUp();
 		else if(action == "WarmUpStart") WarmUpStart();
 		else if(action == "WarmUpEnd") WarmUpEnd();
+		else if(action == "GameLevel") ToGameLevel();
+		else if(action == "MusicSelect") ToMusicSelect();
+		else if(action == "m1") SelectMusic(1);
+		else if(action == "m2") SelectMusic(2);
+		else if(action == "m3") SelectMusic(3);
 		else if(action == "Running") ToRunning();
 		else if(action == "SetTrack") SetTrack();
 		else if(action == "MusicChange") ToMusicChange();
 		else if(action == "Pause") Pause();
+		else if(action == "madd") MusicAdd();
+		else if(action == "msub") MusicSub();
 		else if(action == "Return") Return();
 		else if(action == "Score") ToScore();
 		else if(action == "Exit") Exit();
@@ -72,19 +76,6 @@ public class BUTTONS : MonoBehaviour{
 	void ToStart(){
 		GameObject.FindWithTag("Player").GetComponent<Player>().state = "Start";
 		SceneManager.LoadScene("Start");
-	}
-
-	void ToGameLevel(){
-		GameObject.FindWithTag("Player").GetComponent<Player>().state = "GameLevel";
-		SceneManager.LoadScene("GameLevel");
-	}
-
-	void ToMusicSelect(){
-		GameObject.FindWithTag("Player").GetComponent<Player>().state = "MusicSelect";
-		SceneManager.LoadScene("MusicSelect");
-	}
-
-	void SelectMusic(string music){
 	}
 
 	void ToWarmUp(){
@@ -101,6 +92,23 @@ public class BUTTONS : MonoBehaviour{
 		GetComponent<SetActive>().Active();
 	}
 
+	void ToGameLevel(){
+		GameObject.FindWithTag("Player").GetComponent<Player>().state = "GameLevel";
+		SceneManager.LoadScene("GameLevel");
+	}
+
+	void ToMusicSelect(){
+		GameObject.FindWithTag("Player").GetComponent<Player>().state = "MusicSelect";
+		SceneManager.LoadScene("MusicSelect");
+	}
+
+	void SelectMusic(int idx){
+		if(idx >= 1 && idx <= 3){
+			Player.GetComponent<Player>().music_idx = idx-1;
+			ToRunning();
+		}
+	}
+
 	void ToRunning(){
 		Player.GetComponent<Player>().Run_init();
 		Player.transform.Find("Canvas").gameObject.SetActive(false);
@@ -110,9 +118,7 @@ public class BUTTONS : MonoBehaviour{
 
 	void SetTrack(){
 		GameObject.Find("Tracks").GetComponent<SetParent>().UnbindParent();
-		//GameObject.Find("Buttons").transform.position = Player.transform.position;
-		//GameObject.Find("Buttons").transform.rotation = Player.transform.rotation;
-		//GameObject.Find("Buttons").GetComponent<SetActive>().Active();
+		GameObject.Find("Managers").GetComponent<SetParent>().UnbindParent();
 		Player.transform.Find("Canvas").gameObject.SetActive(true);
 		Player.GetComponent<Player>().state = "Running";
 		GameObject.Find("GameManager").GetComponent<GameManager>().StartGame();
@@ -128,20 +134,51 @@ public class BUTTONS : MonoBehaviour{
 	void Pause(){
 		GameObject.Find("Tracks").SetActive(false);
 		GetComponent<SetActive>().Active();
-		GameObject PC = GameObject.Find("PauseCanvas");
-		PC.transform.position = Player.transform.position;
-		PC.transform.rotation = Player.transform.rotation;
-		PC.transform.Translate(0, 0, 2);
+		CanvasFollow PCscript = GameObject.Find("PauseCanvas").GetComponent<CanvasFollow>();
+		PCscript.BindParent();
+		PCscript.UnbindParent();
 		GameObject[] Bricks = GameObject.FindGameObjectsWithTag("brick");
 		foreach(GameObject b in Bricks) b.GetComponent<Brick>().Pause();
+		GameObject[] Obstacles = GameObject.FindGameObjectsWithTag("obstacle");
+		foreach(GameObject o in Obstacles) o.GetComponent<Brick>().Pause();
+		GameObject.Find("GameManager").GetComponent<GameManager>().PauseGame();
 		GameObject.Find("RunningCanvas").SetActive(false);
+	}
+
+	void MusicAdd(){
+		int new_idx = GameObject.Find("music_name").GetComponent<GetMusicName>().music_idx;
+		new_idx = (new_idx + 1)%3;
+		GameObject.Find("music_name").GetComponent<GetMusicName>().music_idx = new_idx;
+	}
+
+	void MusicSub(){
+		int new_idx = GameObject.Find("music_name").GetComponent<GetMusicName>().music_idx;
+		new_idx = (new_idx + 2)%3;
+		GameObject.Find("music_name").GetComponent<GetMusicName>().music_idx = new_idx;
 	}
 
 	void Return(){
 		GetComponent<SetActive>().Active();
-		GameObject[] Bricks = GameObject.FindGameObjectsWithTag("brick");
-		foreach(GameObject b in Bricks) b.GetComponent<Brick>().Continue();
-		GameObject.Find("PauseCanvas").SetActive(false);
+		GetMusicName GMN = GameObject.Find("music_name").GetComponent<GetMusicName>();
+		if(GMN.origin_idx != GMN.music_idx){
+			Player.GetComponent<Player>().music_idx = GMN.music_idx;
+			GameObject[] Bricks = GameObject.FindGameObjectsWithTag("brick");
+			foreach(GameObject b in Bricks) Destroy(b);
+			GameObject[] Obstacles = GameObject.FindGameObjectsWithTag("obstacle");
+			foreach(GameObject o in Obstacles) Destroy(o);
+			Player.GetComponent<Player>().Run_init();
+			GameObject.Find("GameManager").GetComponent<GameManager>().StopGame();
+			GameObject.Find("GameManager").GetComponent<GameManager>().StartGame();
+			GameObject.Find("PauseCanvas").SetActive(false);
+		}
+		else{
+			GameObject[] Bricks = GameObject.FindGameObjectsWithTag("brick");
+			foreach(GameObject b in Bricks) b.GetComponent<Brick>().Continue();
+			GameObject[] Obstacles = GameObject.FindGameObjectsWithTag("obstacle");
+			foreach(GameObject o in Obstacles) o.GetComponent<Brick>().Continue();
+			GameObject.Find("GameManager").GetComponent<GameManager>().ReplayGame();
+			GameObject.Find("PauseCanvas").SetActive(false);
+		}
 	}
 
 	void ToScore(){
@@ -150,6 +187,6 @@ public class BUTTONS : MonoBehaviour{
 	}
 
 	void Exit(){
-		Debug.Log("Exit");
+		Application.Quit();
 	}
 }

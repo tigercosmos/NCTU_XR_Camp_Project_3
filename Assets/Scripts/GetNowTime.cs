@@ -7,6 +7,8 @@ using System;
 public class GetNowTime : MonoBehaviour{
 	// Update is called once per frame
 	void Update(){
-		gameObject.GetComponent<Text>().text = DateTime.Now.Hour + ":" + DateTime.Now.Minute;
+		int h = DateTime.Now.Hour;
+		int m = DateTime.Now.Minute;
+		gameObject.GetComponent<Text>().text = h/10 + "" + h%10 + ":" + m/10 + "" + m%10;
 	}
 }

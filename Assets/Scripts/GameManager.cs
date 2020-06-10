@@ -16,12 +16,29 @@ public class GameManager : MonoBehaviour{
 	}
 
 	public void StartGame(){
-		var times = AM.GetBeats("Assets/Sounds/beat1.txt");
+		string beat_name = "Assets/Sounds/beat";
+		beat_name += (GameObject.FindWithTag("Player").GetComponent<Player>().music_idx + 1);
+		beat_name += ".txt";
+		var times = AM.GetBeats(beat_name);
 		foreach (var time in times){
 			Debug.Log(time);
 		}
 
 		AM.StartBGM();
 		BO.GenerateBeats(times);
+	}
+
+	public void PauseGame(){
+		AM.PauseBGM();
+		BO.Pause();
+	}
+
+	public void ReplayGame(){
+		AM.ReplayBGM();
+		BO.Replay();
+	}
+
+	public void StopGame(){
+		AM.StopBGM();
 	}
 }

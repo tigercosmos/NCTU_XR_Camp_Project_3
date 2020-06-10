@@ -6,29 +6,25 @@ using System.IO;
 
 public class AudioManager : MonoBehaviour{
 	public AudioSource BGM;
-
-	// Start is called before the first frame update
-	void Start(){
-	//	BGM = GetComponent<AudioSource>();
-	}
-
-	// Update is called once per frame
-	void Update(){
-	}
+	public AudioClip[] music;
 
 	public void StartBGM(){
+		int music_idx = GameObject.FindWithTag("Player").GetComponent<Player>().music_idx;
+		BGM.clip = music[music_idx];
 		BGM.Play();
 		Debug.Log("play music!");
 	}
 
-	public void StopBGM(){
-		BGM.Stop();
+	public void PauseBGM(){
+		BGM.Pause();
 	}
 
-	public void ChangeBGM(AudioClip music){
-		BGM.Stop();
-		BGM.clip = music;
+	public void ReplayBGM(){
 		BGM.Play();
+	}
+
+	public void StopBGM(){
+		BGM.Stop();
 	}
 
 	public ArrayList GetBeats(string path){

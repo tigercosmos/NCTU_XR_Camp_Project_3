@@ -12,20 +12,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Start.unity
     guid: 50f6760b25cfe45748f243a49733c3eb
   - enabled: 1
+    path: Assets/Scenes/WarmUp.unity
+    guid: 6a2f81fcc220f4b7bbd7973d8c605de8
+  - enabled: 1
     path: Assets/Scenes/GameLevel.unity
     guid: 2f26e4d3a20074687b658ad63da09d5d
   - enabled: 1
     path: Assets/Scenes/MusicSelect.unity
     guid: 2892f29e0f0e84256833c3f94a4024c9
   - enabled: 1
-    path: Assets/Scenes/WarmUp.unity
-    guid: 6a2f81fcc220f4b7bbd7973d8c605de8
-  - enabled: 1
     path: Assets/Scenes/Running.unity
     guid: ec504252cf9e540c4811e1400181d18a
-  - enabled: 1
-    path: Assets/Scenes/MusicChange.unity
-    guid: 6a43e8955c40a471eac191eca0adbcb5
   - enabled: 1
     path: Assets/Scenes/Score.unity
     guid: 50b4c424efa274060b0c06a387473236
