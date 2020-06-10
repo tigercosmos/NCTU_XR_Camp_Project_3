@@ -5,11 +5,11 @@ using System.IO;
 
 
 public class AudioManager : MonoBehaviour{
-	AudioSource BGM;
+	public AudioSource BGM;
 
 	// Start is called before the first frame update
 	void Start(){
-		BGM = GetComponent<AudioSource>();
+	//	BGM = GetComponent<AudioSource>();
 	}
 
 	// Update is called once per frame
